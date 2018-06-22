@@ -1,0 +1,14 @@
+MAS project {
+
+	infrastructure: Centralised
+	agents:agent;
+	
+	classpath: 
+	"lib/jsoup-1.11.2.jar";
+	"lib/org.json.jar";
+	"lib/jpl.jar";
+	"lib/jiprolog-4.1.4.1.jar";
+		
+	aslSourcePath:
+		"src/asl";
+}
