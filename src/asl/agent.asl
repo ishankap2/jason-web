@@ -9,13 +9,14 @@
 
 +!insertsteps : true <- .print("Insert Steps"); internalActions.insertSteps(X); !execall.
 
-+!execall: not over(all) <- .print("Get the step"); internalActions.getCurrentStep(X); !guidance(X).
-+!execall: over(all) <- .print("Reached the destination").
++!execall: not over(all) <- .print("Get the step"); internalActions.getCurrentStep(X); if(X =="over" ){
+																	+over(all)}!guidance(X).
++!execall: over(all) <- .print("Reached the destination"); -over(all).
 
 +!execstep : not over(step) <- internalActions.getSuggestion(X); if(X =="over" ){
 																	+over(step)
-																}.wait(2000); !guidance(X).
+																}.wait(4000); !guidance(X).
 																
-+!execstep : over(step) <- .print("Reached one Destination");.wait(2000); -over(step); !execall.
++!execstep : over(step) <- .print("Reached one Destination");.wait(4000); -over(step); !execall.
 
-+!guidance(X) <- .print(X); .wait(3000); !execstep.
++!guidance(X) <- .print("Suggestion ", X); .wait(4000); !execstep.

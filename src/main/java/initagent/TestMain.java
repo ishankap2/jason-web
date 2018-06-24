@@ -21,17 +21,17 @@ public class TestMain {
 //		System.out.println("");
 //		g.GetDistance();
 		
-		try {
-			mongodb m = new mongodb();
-			String [] data = m.getInputs();
-			System.out.println(data[0]+" "+data[1]+" "+data[2]);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			mongodb m = new mongodb();
+//			String [] data = m.getInputs();
+//			System.out.println(data[0]+" "+data[1]+" "+data[2]);
+////			System.out.println(m.currentSuggestion());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		
-//		new QuoteClient().getCurrentLocation();
-		
+		String location = new QuoteClient().getCurrentLocation();
+		System.out.println(location);
     	
 	}
 }

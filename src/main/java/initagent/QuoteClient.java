@@ -15,7 +15,7 @@ public class QuoteClient {
 
 		InetAddress client_adress = null;
 		try {
-			client_adress = InetAddress.getByName("192.168.8.100");
+			client_adress = InetAddress.getByName("10.10.22.220");
 		} catch (UnknownHostException e) {
 			// showDialog(R.string.error_invalidaddr);
 		}
@@ -40,7 +40,6 @@ public class QuoteClient {
 				String text = new String(mDatagramPacket.getData(), 0, mDatagramPacket.getLength());
 				splited = text.split("\\s+");
 				if (splited.length > 20) {
-					System.out.println(splited[2]+splited[3]);
 					currentLocation = splited[2].replace(",","")+","+splited[3].split(",")[0];
 					isFind = false; 
 				}
@@ -54,7 +53,6 @@ public class QuoteClient {
 			}
 
 		}
-		System.out.println(currentLocation);
 		return currentLocation;
 	}
 }

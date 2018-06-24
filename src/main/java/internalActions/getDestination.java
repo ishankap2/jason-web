@@ -2,6 +2,7 @@
 
 package internalActions;
 
+import initagent.GoogleAPI;
 import initagent.stepStack;
 import jason.*;
 import jason.asSemantics.*;
@@ -11,9 +12,8 @@ public class getDestination extends DefaultInternalAction {
 
     @Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
-    	try{
-			
-			return un.unifies(args[0],new StringTermImpl("katubedda"));
+    	try{ 
+			return un.unifies(args[0],new StringTermImpl(GoogleAPI.destination));
 		}catch(Exception e){
 			System.out.println(e);
 			return un;

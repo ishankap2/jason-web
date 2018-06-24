@@ -16,6 +16,7 @@ public class RoadSignController {
 	
 	@RequestMapping("/insertrs")
 	public void create(@RequestBody RoadSign rs) {
+		System.out.println("Roadsign Received");
 		obstacleRepo.save(rs);
 	}
 

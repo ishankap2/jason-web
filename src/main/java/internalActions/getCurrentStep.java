@@ -5,6 +5,7 @@ package internalActions;
 import java.util.ArrayList;
 
 import initagent.GoogleAPI;
+import initagent.mongodb;
 import initagent.stepStack;
 import jason.*;
 import jason.asSemantics.*;
@@ -14,12 +15,21 @@ public class getCurrentStep extends DefaultInternalAction {
 
     @Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
+    	
+    	GoogleAPI.increment =0;
         // execute the internal action
+    	String step = "over";
     	try{
 			// represent string in jason using StringTermImpl
-    		String data = stepStack.pop();
-			System.out.println("Curent step:"+data);
-			return un.unifies(args[0],new StringTermImpl(data));
+    		if(!stepStack.isEmpty()) {
+    			step = stepStack.pop();	
+    			mongodb m = new mongodb();
+    			m.insertSuuggestion(step);
+    		}
+    		
+			System.out.println("Curent step:"+step);
+			
+			return un.unifies(args[0],new StringTermImpl(step));
 		}catch(Exception e){
 			System.out.println(e);
 			return un;

@@ -17,7 +17,8 @@ public class GoogleAPI {
 	public static String source = LocationStack.pop();
 	public static String destination;
 	public static String tempEnd = "";
-
+	public static double len;
+	public static int increment;
 	private final String USER_AGENT = "Mozilla/5.0";
 
 	public String nameConvention(String name) {
@@ -85,7 +86,7 @@ public class GoogleAPI {
 	}
 
 
-	public static boolean IsReached() {
+	public static String IsReached() {
 
 		String [] s = source.split(",");
 		String [] d = tempEnd.split(",");
@@ -98,17 +99,29 @@ public class GoogleAPI {
 		double lon2 = stepStack.endLng;
 		
 		final double R= 6371.16; // Radius of the earth 6.800149, 79.901062
-		boolean isreached = false;
+		String isreached="ok";
 		double latDistance = Math.toRadians(lat2 - lat1);
 		double lonDistance = Math.toRadians(lon2 - lon1);
 		double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2) + Math.cos(Math.toRadians(lat1))
 				* Math.cos(Math.toRadians(lat2)) * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 		double distance = R * c * 1000; // convert to meters
-		
-		if(distance<10) {
-			isreached = true;
+//		
+		if(len<distance) {
+			increment++;
 		}
+		System.out.println(increment+" "+len+" "+distance);
+		if(distance<10) {
+			isreached = "reached";
+		}
+		else if(increment>5) {
+			isreached = "wrong";
+		}
+		
+		len = distance;
+//		else {
+//			isreached = "ok";
+//		}
 		return isreached;
 	}
 

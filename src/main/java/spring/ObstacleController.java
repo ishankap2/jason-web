@@ -1,14 +1,11 @@
 package spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import repository.ObstacleRepository;
-
 
 @RestController
 public class ObstacleController {
@@ -18,7 +15,7 @@ public class ObstacleController {
 	
 	@RequestMapping("/insertob")
 	public void create(@RequestBody Obstacle ob) {
-		System.out.println(ob);
+		System.out.println("Obstacle Received");
 		obstacleRepo.save(ob);
 	}
 	

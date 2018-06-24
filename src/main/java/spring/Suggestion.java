@@ -1,5 +1,8 @@
 package spring;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "suggestions")
 public class Suggestion {
 	
 	private String suggestion;
