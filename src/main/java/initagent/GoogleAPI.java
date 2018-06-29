@@ -47,6 +47,8 @@ public class GoogleAPI {
 
 			int responseCode = con.getResponseCode();
 			System.out.println("Response Code : " + responseCode);
+			
+			if(responseCode==200) {
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String inputLine;
@@ -78,6 +80,11 @@ public class GoogleAPI {
 //			md.insertSteps(list);
 			
 			stepStack.stepsList = list;
+			
+			}else {
+				mongodb m = new mongodb();
+				m.insertSuuggestion("location is wrong");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,14 +117,15 @@ public class GoogleAPI {
 		if(len<distance) {
 			increment++;
 		}
-		System.out.println(increment+" "+len+" "+distance);
+		
 		if(distance<10) {
 			isreached = "reached";
 		}
-		else if(increment>5) {
+		else if(increment>2) {
+			increment=0;
 			isreached = "wrong";
 		}
-		
+
 		len = distance;
 //		else {
 //			isreached = "ok";

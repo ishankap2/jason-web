@@ -15,7 +15,7 @@ public class QuoteClient {
 
 		InetAddress client_adress = null;
 		try {
-			client_adress = InetAddress.getByName("10.10.22.220");
+			client_adress = InetAddress.getByName("192.168.8.100");
 		} catch (UnknownHostException e) {
 			// showDialog(R.string.error_invalidaddr);
 		}

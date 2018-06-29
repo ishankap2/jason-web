@@ -3,7 +3,7 @@
 /* Plans */
 !start.
 
-+!start : true <- !getdestination; -over(all); -over(step).
++!start : true <- -over(all); -over(step); !getdestination.
 
 +!getdestination <- internalActions.getDestination(D); +destination(D); .print("Destination is: ",D) !insertsteps.
 
@@ -15,8 +15,8 @@
 
 +!execstep : not over(step) <- internalActions.getSuggestion(X); if(X =="over" ){
 																	+over(step)
-																}.wait(4000); !guidance(X).
+																}.wait(5000); !guidance(X).
 																
 +!execstep : over(step) <- .print("Reached one Destination");.wait(4000); -over(step); !execall.
 
-+!guidance(X) <- .print("Suggestion ", X); .wait(4000); !execstep.
++!guidance(X) <- .print("Suggestion ", X); .wait(5000); !execstep.

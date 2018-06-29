@@ -75,7 +75,7 @@ public class mongodb {
 		suggestion = d.toJson().toString();
 		}else {
 		JSONObject job = new JSONObject();
-		job.put("suggestion", "none");
+		job.put("suggestion", "None");
 		suggestion = job.toString();
 		}
 		mc.close();

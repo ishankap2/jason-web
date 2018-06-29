@@ -4,6 +4,7 @@ package internalActions;
 
 import javax.xml.transform.Source;
 
+import initagent.ColomboLocationStack;
 import initagent.GoogleAPI;
 import initagent.LocationStack;
 import initagent.PrologQuery;
@@ -23,6 +24,10 @@ public class getSuggestion extends DefaultInternalAction {
 //    		GoogleAPI.source = WrongLocationStack.pop();	
 //    	}
     	
+//    	if(!ColomboLocationStack.isEmpty()) {
+//    		GoogleAPI.source = LocationStack.pop();	
+//    	}
+    	
     	if(!LocationStack.isEmpty()) {
     		GoogleAPI.source = LocationStack.pop();	
     	}
@@ -34,16 +39,21 @@ public class getSuggestion extends DefaultInternalAction {
     		String isResched = GoogleAPI.IsReached();
     		
     		if(isResched=="reached") {
-    			suggestion = "reached";
+    			suggestion = "destination reached";
+    			m.insertSuuggestion(suggestion);
     			return un.unifies(args[0],new StringTermImpl("over"));
     		}
     		else if(isResched=="wrong") {
     			suggestion="wrong path";
+    			m.insertSuuggestion(suggestion);
     			return un.unifies(args[0],new StringTermImpl("wrong path"));
     		}
+    		    		    	
+    		int s = Integer.parseInt(suggestion);
     		
-    		
-    		m.insertSuuggestion(suggestion);
+    		if(s!=1) {
+    			m.insertSuuggestion(suggestion);	
+    		}
     		
     		System.out.println("Current Location of User "+GoogleAPI.source);
 			return un.unifies(args[0],new StringTermImpl(suggestion));
